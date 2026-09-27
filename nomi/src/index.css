@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@theme {
+  /* ============ Colors ============ */
+  --color-cream:   #F7F3EC;  /* Primary Background */
+  --color-surface: #FFFFFF;  /* Cards / Inputs  */
+  --color-ink:     #171513;  /* Primary Text    */
+  --color-muted:   #756F67;  /* Secondary Text  */
+  --color-faint:   #9B958D;  /* Muted Text      */
+  --color-accent:  #E85D2A;  /* Burnt Orange    */
+  --color-dark:    #24201D;  /* Dark Surface    */
+  --color-line:    #E7E0D6;  /* Border          */
+  --color-success: #3F7D58;
+  --color-error:   #C94A45;
+
+  /* ============ Fonts ============ */
+  --font-sans:  "Manrope", system-ui, sans-serif;
+  --font-serif: "DM Serif Display", Georgia, serif;
+
+  /* ============ Radius ============ */
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+
+  /* ============ Shadow ============ */
+  --shadow-soft: 0 14px 40px rgba(23, 21, 19, 0.08);
+
+  /* ============ Spacing scale ============ */
+  --spacing-section: 120px;
+  --spacing-section-mobile: 72px;
+}
+
+/* ============ Base ============ */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 92% 4%, rgba(232, 93, 42, 0.08), transparent 24rem),
+    radial-gradient(circle at 4% 36%, rgba(63, 125, 88, 0.05), transparent 28rem),
+    var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+img {
+  display: block;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Container موحّد */
+.container-nomi {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+@media (min-width: 768px) {
+  .container-nomi { padding-inline: 40px; }
+}
+
+/* Focus ring موحّد */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Shared visual language */
+.eyebrow {
+  color: var(--color-accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+main {
+  overflow: hidden;
+}
+
+main section {
+  position: relative;
+}
+
+/* Lift interactive cards without changing their layout or behavior. */
+.group.block.bg-surface {
+  box-shadow: 0 2px 0 rgba(23, 21, 19, 0.02), var(--shadow-soft);
+  transition:
+    transform 260ms ease,
+    box-shadow 260ms ease,
+    border-color 260ms ease;
+}
+
+.group.block.bg-surface:hover {
+  border-color: rgba(232, 93, 42, 0.35);
+  box-shadow: 0 18px 46px rgba(23, 21, 19, 0.12);
+  transform: translateY(-4px);
+}
+
+/* Make image blocks feel intentional and tactile. */
+.group .aspect-square,
+.group .aspect-\[4\/3\] {
+  background: linear-gradient(135deg, #eee7dc, #ddd2c3);
+}
+
+.group img {
+  filter: saturate(0.96);
+}
+
+.group:hover img {
+  filter: saturate(1.06);
+}
+
+/* Consistent, polished button feedback. */
+a[class*="rounded-"],
+button[class*="rounded-"] {
+  transition:
+    transform 180ms ease,
+    filter 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+a[class*="rounded-"]:active,
+button[class*="rounded-"]:active {
+  transform: scale(0.97);
+}
+
+/* Keep the mobile dock comfortably above the content and visually grounded. */
+@media (max-width: 767px) {
+  .container-nomi {
+    padding-inline: 20px;
+  }
+
+  .eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
